@@ -1,6 +1,9 @@
 'use strict';
 
 import { elements } from "./settings.js";
+import slider from "./slider.js";
+
+
 const dom = {
     create(
         content = false,
@@ -23,25 +26,26 @@ const dom = {
     },
     mapping() {
         elements.intro = dom.$('.intro');
-        elements.graph = dom.$('.graph').getContext('2d');
+        elements.download = dom.$('#download');
+        elements.slides = dom.$$('.slide');
+        elements.slider = dom.$('.slider');
+        elements.previousButton = dom.$('.previous');
+        elements.nextButton = dom.$('.next');
+        elements.circles = dom.$$('.circle');
+        elements.infographic = dom.$('#about-infographic');
+        elements.about = dom.$('#about');
+        elements.skills = dom.$$('.skills-section');
+        elements.skillsSection = dom.$('#skills-inner');
     },
     appendEventListeners() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    for (let i = 0; i < 4; i++) {
-                        setTimeout(() => {
-                            elements.intro.classList.add('hop');
-
-                            elements.intro.addEventListener('animationend', () => {
-                                elements.intro.classList.remove('hop');
-                            }, { once: true });
-                        }, i * 600);
-                    }
-                }
-            });
+        elements.previousButton.addEventListener('click', () => slider.changeSlide(-1));
+        elements.nextButton.addEventListener('click', () => slider.changeSlide(1));
+        elements.download.addEventListener('click', () => {
+            const link = dom.create(false, 'a');
+            link.download = 'CV_Aishwarya_Landage';
+            link.href = 'assets/data/Lebenslauf_Aishwarya_Landage.pdf';
+            link.click();
         });
-        observer.observe(elements.intro);
     }
 }
 

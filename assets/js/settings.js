@@ -1,7 +1,8 @@
 'use strict'
 
 const settings = {
-    elements: {}
+    elements: {},
+    currentSlide: 0
 }
 
 export default settings;

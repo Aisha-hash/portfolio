@@ -2,12 +2,16 @@
 
 import dom from './dom.js';
 import render from './render.js';
-import { elements } from './settings.js';
+import slider from './slider.js';
+import settings, { elements } from './settings.js';
+import observer from './observer.js';
 
 const init = () => {
     dom.mapping();
     dom.appendEventListeners();
-    render.graph();
+    slider.showSlide(settings.currentSlide);
+    observer.observe();
+    // render.graph();
 }
 
 

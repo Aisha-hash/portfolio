@@ -2,6 +2,8 @@
 
 import { elements } from "./settings.js";
 
+
+
 const render = {
     graph() {
         const skillsChart = new Chart(elements.graph, {
@@ -24,6 +26,11 @@ const render = {
                 }]
             },
             options: {
+                responsive: true,
+                animation: {
+                    duration: 3500, // Animation duration in ms
+                    easing: 'easeInOutQuad'
+                },
                 indexAxis: 'x',
                 scales: {
                     x: {
